@@ -479,11 +479,7 @@ li{margin:6px 0}
 <button id="top" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
 <script>
 (function(){
-  var key='scroll:'+decodeURIComponent(location.pathname);
-  try{var y=localStorage.getItem(key);if(y){setTimeout(function(){window.scrollTo(0,parseInt(y,10));},80);}}catch(e){}
-  var t=null;
-  window.addEventListener('scroll',function(){
-    if(t)return;t=setTimeout(function(){t=null;try{localStorage.setItem(key,String(window.scrollY));}catch(e){}},200);
-  });
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  if(!location.hash) window.scrollTo(0,0);
 })();
 </script></body></html>
